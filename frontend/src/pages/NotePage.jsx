@@ -20,7 +20,7 @@ const NotePage = () => {
     }, [id])
 
     const createNote = async () => {
-        fetch(`/api/notes/create`, {
+        fetch(`/api/notes/`, {
             method: 'POST',
             headers: {
                 'X-CSRFToken': 'ISYaLDgfKbmOv4cYMS3vowhrKcwhhneBxuI78bU1XOv732RZTL96LacN7FQpZe9T',
@@ -31,7 +31,7 @@ const NotePage = () => {
     }
 
     const updateNote = async () => {
-        fetch(`/api/notes/${id}/update`, {
+        fetch(`/api/notes/${id}`, {
             method: 'PUT',
             headers: {
                 'X-CSRFToken': 'ISYaLDgfKbmOv4cYMS3vowhrKcwhhneBxuI78bU1XOv732RZTL96LacN7FQpZe9T',
@@ -42,7 +42,7 @@ const NotePage = () => {
     }
 
     const deleteNote = async () => {
-        fetch(`/api/notes/${id}/delete`, {
+        fetch(`/api/notes/${id}`, {
             method: 'DELETE',
             headers: {
                 'X-CSRFToken': 'ISYaLDgfKbmOv4cYMS3vowhrKcwhhneBxuI78bU1XOv732RZTL96LacN7FQpZe9T',
