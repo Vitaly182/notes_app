@@ -19,6 +19,16 @@ const NotePage = () => {
         getNote()
     }, [id])
 
+
+    const [notes, setNotes] = useState([])
+
+    const getNotes = async () => {
+        const response = await fetch('/api/notes/')
+        const data = await response.json()
+        setNotes(data)
+    }
+
+
     const createNote = async () => {
         fetch(`/api/notes/`, {
             method: 'POST',
@@ -28,6 +38,7 @@ const NotePage = () => {
             },
             body: JSON.stringify(note)
         })
+        getNotes()
     }
 
     const updateNote = async () => {
@@ -39,6 +50,7 @@ const NotePage = () => {
             },
             body: JSON.stringify(note)
         })
+        getNotes()
     }
 
     const deleteNote = async () => {
@@ -49,6 +61,7 @@ const NotePage = () => {
                 'Content-Type': 'application/json'
             },
         })
+        getNotes()
     }
 
     const handleSubmit = () => {
@@ -77,8 +90,7 @@ return (
             :
             <Link to='/'>
                 <button onClick={handleSubmit}>Done</button>
-            </Link>
-        
+            </Link>        
             }
 
         </div>

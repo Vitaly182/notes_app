@@ -3,7 +3,7 @@ from .serializers import NoteSerializer
 from .models import Note
 
 
-def getNotesList(request):
+def getNotesList():
     notes = Note.objects.all().order_by('-updated')
     serializer = NoteSerializer(notes, many=True)
     return Response(serializer.data)
@@ -16,7 +16,7 @@ def createNote(request):
     serializer = NoteSerializer(note, many=False)
     return Response(serializer.data)
 
-def getNoteDetail(request, pk):
+def getNoteDetail(pk):
     note = Note.objects.get(id=pk)
     serializer = NoteSerializer(note, many=False)
     return Response(serializer.data)
@@ -31,7 +31,7 @@ def updateNote(request, pk):
     return Response(serializer.data)
 
 
-def deleteNote(request, pk):
+def deleteNote(pk):
     note = Note.objects.get(id=pk)
     note.delete()
     return Response('Note was deleted')

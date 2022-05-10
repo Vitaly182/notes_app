@@ -6,15 +6,14 @@ const NoteListPage = () => {
 
     const [notes, setNotes] = useState([])
 
-    useEffect(() => {
+    useEffect(() => {        
+        const getNotes = async () => {
+            const response = await fetch('/api/notes/')
+            const data = await response.json()
+            setNotes(data)
+        }
         getNotes()
     }, [])
-
-    const getNotes = async () => {
-        const response = await fetch('/api/notes/')
-        const data = await response.json()
-        setNotes(data)
-    }
 
     return (
         <div className='notes'>
@@ -24,10 +23,10 @@ const NoteListPage = () => {
             </div>
             <div className='notes-list'>
                 {notes.map((note) => (
-                    <ListItem key={note.id} note={note}/>
+                    <ListItem key={note.id} note={note} />
                 ))}
             </div>
-            <AddButton/>
+            <AddButton />
         </div>
     )
 }

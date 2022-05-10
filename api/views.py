@@ -1,9 +1,5 @@
-from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .models import Note
-from .serializers import NoteSerializer
-from api import serializers
 from .utils import getNotesList, createNote, getNoteDetail, updateNote, deleteNote
 
 
@@ -47,7 +43,7 @@ def getRoutes(request):
 @api_view(['GET', 'POST'])
 def getNotes(request):
     if request.method == 'GET':
-        return getNotesList(request)
+        return getNotesList()
 
     if request.method == 'POST':
         return createNote(request)
@@ -56,14 +52,14 @@ def getNotes(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 def getNote(request, pk):
     if request.method == 'GET':
-        return getNoteDetail(request, pk)
+        return getNoteDetail(pk)
 
     if request.method == 'PUT':
         return updateNote(request, pk)
 
 
     if request.method == 'DELETE':
-        return deleteNote(request, pk)
+        return deleteNote(pk)
 
 
 
